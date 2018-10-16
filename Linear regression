@@ -1,0 +1,13 @@
+#Estimation
+Least squares Linear Non-linear
+Ordinary Weighted Generalized
+Partial Total Non-negative Ridge regression Regularized
+Least absolute deviations Iteratively reweighted Bayesian Bayesian multivariate
+
+
+observed dependent variable: (values of the variable being predicted)
+#ordinary least squares (OLS)
+a type of linear least squares method for estimating the unknown parameters in a linear regression model. 
+OLS chooses the parameters of a linear function of a set of explanatory variables by the principle of least squares: 
+min sum [(y in the given dataset- predicted \hat{y} by the linear function)^2]
+Assumptions: Classical linear regression model + Independent and identically distributed (iid)
