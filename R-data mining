@@ -1,0 +1,35 @@
+########### data transformation by dplyr ################
+############Pick observations by their values: filter()
+filter(table, month ==1, day ==1), filter(table, month ==1| day ==1)
+# remove duplicate
+distinct(flights, month, .keep_all = TRUE)
+# random select
+sample_n(flights, 10, replace = TRUE), sample_frac(flights, 0.1, replace = TRUE)
+# select by position
+slice(flights, 1:5), top_n(flights, 5)
+
+############ Reorder the rows: arrange().
+arrange(flights, year, month, day)
+arrange(flights, desc(arr_delay))
+
+########## Pick variables by their names(columns): select().
+storm.names <- select(storms, name , year, status)
+select(storms, name:status)
+select(storms, seq(1, 10, by = 2))
+# move wind,pressure to the start position
+select(storms, wind, pressure, everything())
+## delete columns
+select(storms, -(year:hour))
+
+########### Create new variables with functions of existing variables: mutate().
+mutate(storms, pressure.mmHg = 0.75 * pressure)
+mutate_all(storms.numeric, funs(exp(.))), 
+mutate_if(storms, is.numeric, funs(log(.))), 
+mutate_at(storms, vars(wind, pressure), funs(log(.)))
+
+############### Collapse many values down to a single summary: summarise()
+summarise(airquality, avg.temp = mean(Temp, na.rm = TRUE))
+by_day <- group_by(airquality, Month, Day)
+airquality %>% 
+  group_by(Month) %>% 
+  summarise(max.temp = max(Temp, na.rm = TRUE))
